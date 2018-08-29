@@ -17,6 +17,7 @@ module.exports = merge(common, {
     hot: true,
     compress: true,
     port: 8080,
+    open: 'http://localhost:8080',
     // watchContentBase: true,
     allowedHosts: [
       'purejs.skbt.co.kr'
