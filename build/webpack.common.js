@@ -1,17 +1,12 @@
 const path = require('path');
 
-const MAP_NODE_ENV = {
-  prod: 'production',
-  test: 'production',
-  dev: 'development'
-};
+const contentHash = new Date().getTime() || 7690832509623;
 
 module.exports = {
-  mode: MAP_NODE_ENV[process.env.NODE_ENV],
   entry: './src/app.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js'
+    path: path.resolve(__dirname, '../dist'),
+    filename: `[name].bundle.${contentHash}.js`
   },
   module: {
     rules: [
@@ -39,17 +34,4 @@ module.exports = {
       }
     ]
   },
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000,
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 8080,
-    // watchContentBase: true,
-    allowedHosts: [
-      'purejs.skbt.co.kr'
-    ]
-  }
 };
