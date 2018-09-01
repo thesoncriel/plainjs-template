@@ -8,6 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
+  devtool: 'source-map',
   watchOptions: {
     aggregateTimeout: 300,
     poll: 1000,

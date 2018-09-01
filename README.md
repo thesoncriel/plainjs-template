@@ -6,7 +6,11 @@
 ```
 npm run dev
 ```
-그러면 기본 웹브라우저에서 localhost:8080 주소로 자동으로 열릴 것이다.
+그러면 기본 웹브라우저에서 localhost:8080 주소로 자동으로 열릴 것이다.  
+만약 IE 에서 Security 오류가 난다면 다음과 같이 수행.
+- 인터넷 옵션 > 보안 > 로컬 인트라넷 > 사이트 > 고급
+- http://localhost 추가
+- IE 재시작
 
 ## Features
 - webpack 을 이용한 build system 포함.

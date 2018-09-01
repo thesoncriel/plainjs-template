@@ -1,9 +1,14 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production';
 
 const contentHash = new Date().getTime() || 7690832509623;
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    style: './src/styles/app.scss'
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: `[name].bundle.${contentHash}.js`
@@ -16,14 +21,21 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['babel-preset-env'],
             cacheDirectory: true,
+            presets: [
+              "@babel/preset-env"
+            ],
+            plugins: [
+              "@babel/plugin-transform-runtime"
+            ]
           }
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/i,
         use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
           {
             loader: 'sass-loader',
             options: {

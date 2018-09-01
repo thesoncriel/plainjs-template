@@ -1,4 +1,4 @@
-module.exports = {
+export const api = {
   getList() {
     return Promise.resolve([
       {
