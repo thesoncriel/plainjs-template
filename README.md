@@ -16,8 +16,8 @@ npm run dev
 - webpack 을 이용한 build system 포함.
 - webpack-dev-server 를 이용하여 개발 진행 시 실시간으로 개발 변화 내용을 볼 수 있도록 함. (HMR 이용)
 - polyfill 적용 (필요한 내용만 직접 선택하여 적용 함)
+- SASS 사용 가능. 컴파일 내용이 별도의 css 파일로 export 되어 html 에서 사용할 수 있음
 
 ## Todo
 - 기본적인 API 호출 Service 제공
 - SPA로 동작되는 MVVM 패턴 적용
-- SASS 빌드 내용이 별도의 css 파일로 export 되어 html 에서 사용할 수 있게 할 것
