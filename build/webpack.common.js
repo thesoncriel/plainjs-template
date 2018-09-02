@@ -6,7 +6,7 @@ const contentHash = new Date().getTime() || 7690832509623;
 
 module.exports = {
   entry: {
-    app: './src/app.js',
+    app: ['./src/polyfills/index.js', './src/app.js'],
     style: './src/styles/app.scss'
   },
   output: {

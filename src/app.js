@@ -1,4 +1,4 @@
-require('./polyfills');
+// require('./polyfills');
 const { api } = require('./services/api');
 
 const main = () => {
@@ -19,6 +19,8 @@ const main = () => {
   const mClone = Object.assign({}, mData);
 
   console.log(mClone === mData);
+
+  console.log(Object.keys(mData));
 }
 
 main();
