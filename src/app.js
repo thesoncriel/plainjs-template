@@ -1,5 +1,4 @@
-// require('./polyfills');
-const { api } = require('./services/api');
+import { api } from './services/api';
 
 const main = () => {
   api.getList().then(list => list.map(item => console.log(item)));
@@ -7,7 +6,7 @@ const main = () => {
   const elem = document.getElementById('app');
 
   elem.innerHTML = `<div>
-    <h1>룰루랄라 ^^)/!!</h1>
+    <h1>룰루랄라 -_-)b</h1>
     <img src="static/pome_melting.jpg" alt="">
   </div>`;
 

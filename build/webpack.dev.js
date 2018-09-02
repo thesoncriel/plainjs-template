@@ -5,6 +5,7 @@ const common = require('./webpack.common');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -14,18 +15,21 @@ module.exports = merge(common, {
     poll: 1000,
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: 'dev-server-dist',
     hot: true,
     compress: true,
     port: 8080,
-    open: 'http://localhost:8080',
+    // open: 'http://localhost:8080',
     // watchContentBase: true,
     allowedHosts: [
       'purejs.skbt.co.kr'
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], { beforeEmit: true }),
+    new CleanWebpackPlugin(['dev-server-dist'], { beforeEmit: true }),
+    new MiniCssExtractPlugin({
+      filename: 'app.[hash].css',
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
