@@ -6,6 +6,20 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const config = require('../config');
+
+const virtualBackendApiPrefix = config.VIRTUAL_BACKEND_API_PREFIX;
+const proxy = {};
+const proxyV2 = {
+  target: 'http://localhost:' + config.VIRTUAL_BACKEND_PORT + virtualBackendApiPrefix,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/testapi': '',
+  }
+};
+
+proxyV2.pathRewrite['^' + virtualBackendApiPrefix] = '';
+proxy['/v2'] = proxyV2;
 
 module.exports = merge(common, {
   mode: 'development',
@@ -15,17 +29,21 @@ module.exports = merge(common, {
     poll: 1000,
   },
   devServer: {
-    contentBase: 'dev-server-dist',
+    contentBase: './src',
+    watchContentBase: true,
     hot: true,
     compress: true,
-    port: 8080,
+    port: config.PORT,
     // open: 'http://localhost:8080',
     // watchContentBase: true,
-    allowedHosts: [
-      'purejs.skbt.co.kr'
-    ]
+    
+    disableHostCheck: true,
+    proxy,
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': config
+    }),
     new CleanWebpackPlugin(['dev-server-dist'], { beforeEmit: true }),
     new MiniCssExtractPlugin({
       filename: 'app.[hash].css',
