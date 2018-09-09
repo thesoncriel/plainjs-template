@@ -1,4 +1,4 @@
-# PlainJS Template
+# PureJS Template
 간단한 js 프로젝트를 진행하기 위한 프로젝트 템플릿이다.  
 
 ## Getting Started
