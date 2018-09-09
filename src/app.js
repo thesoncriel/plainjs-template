@@ -1,7 +1,7 @@
-import { api } from './services/api';
+const api = require('./services/api');
 
 const main = () => {
-  api.getList().then(list => list.map(item => console.log(item)));
+  api.getList().then(list => list.items.map(item => console.log(item)));
 
   const elem = document.getElementById('app');
 

@@ -19,7 +19,7 @@ const proxyV2 = {
 };
 
 proxyV2.pathRewrite['^' + virtualBackendApiPrefix] = '';
-proxy['/v2'] = proxyV2;
+proxy[config.REAL_BACKEND_API_PREFIX] = proxyV2;
 
 module.exports = merge(common, {
   mode: 'development',

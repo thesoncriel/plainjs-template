@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 
 process.env.NODE_ENV = 'test-production';
 
