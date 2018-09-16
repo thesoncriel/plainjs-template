@@ -270,9 +270,6 @@ const path = require('path');
 
 module.exports = {
   entry: './src/app.js',
-  plugins: [
-    ...
-  ],
   module: {
     rules: [
       {
@@ -289,7 +286,10 @@ module.exports = {
         }
       },
     ]
-  }
+  },
+  plugins: [
+    ...
+  ],
 }
 ```
 위와 같이 module 내 rules 를 채워 넣는 것으로 로더 설정을 할 수 있습니다.  
@@ -328,3 +328,54 @@ $ npm i -D node-sass sass-loader css-loader mini-css-extract-plugin
 - sass-loader: 웹팩에서 scss 파일을 불러올 수 있게 합니다.
 - css-loader: scss 가 css로 컴파일 된 후 웹팩에서 불러올 수 있게 합니다.
 - mini-css-extract-plugin: css 내용을 별도 파일로 저장 할 수 있게 합니다.
+
+이제 webpack.config.js 에 설정 코드를 추가 합니다.
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+
+module.exports = {
+  entry: ['./src/app.js', './src/style/app.scss'],
+  module: {
+    rules: [
+      ...
+      {
+        test: /\.(scss|css)$/,
+        exclude: /(node_modules)/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ]
+      }
+    ]
+  },
+  plugins: [
+    ...
+    new MiniCssExtractPlugin({
+      filename: 'app.css',
+    }),
+  ],
+}
+```
+entry 대상에 scss 파일을 추가 했습니다.  
+단일 엔트리일 경우 문자열로 경로를 주면 되지만, 이번 처럼 여러개일 경우 위와 같이 배열로 넣어 줍니다.  
+rules 에 scss 파일을 대상으로 한 로더를 추가 했습니다.  
+사용되는 로더들은 앞서 언급했던 sass-loader, css-loader, 그리고 css 파일을 만들어주는 mini-css-extract-plugin 의 로더 입니다.  
+플러그인에 MiniCssExtractPlugin 을 추가하고 css 빌드된 파일명을 app.css 로 지정 했습니다.
+
+src 폴더에 style 폴더를 만들고 app.scss 를 추가하여 아래와 같은 코드를 삽입 합니다. (다른 코드를 삽입해도 됩니다)
+```scss
+body {
+  h1 {
+    font-size: 1.5em;
+    color: #50a8e2;
+  }
+}
+```
+그리고 build 하여 html 파일을 실행하면 다음과 같은 화면으로 변경될 것입니다.
+![](post-image/webpack003.jpg)
+
+이제 scss 파일은 app.css 로 컴파일 & 번들링 되고 자동으로 html 파일에 css 파일이 link 태그로 삽입 될 것입니다.
