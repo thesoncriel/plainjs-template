@@ -1,0 +1,26 @@
+$arrCategoryColors:
+  #cbcbcb,
+  #9686e9,
+  #e07373,
+  #52beb5,
+  #64b146
+;
+
+$idx: 0;
+
+@each $categoryColor in $arrCategoryColors {
+  .line-color#{$idx} {
+    stroke: $categoryColor;
+  }
+  .chart-dot-color#{$idx} {
+    fill: $categoryColor;
+  }
+  .chart-text-color#{$idx} {
+    color: $categoryColor;
+  }
+  .chart-bg-color#{$idx} {
+    background: $categoryColor;
+  }
+
+  $idx: $idx + 1;
+}
