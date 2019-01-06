@@ -2,10 +2,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'test-production';
 
-const path = require('path');
-const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
