@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'development';
+
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -6,6 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const config = require('../config');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -18,12 +21,10 @@ module.exports = merge(common, {
     contentBase: 'dev-server-dist',
     hot: true,
     compress: true,
-    port: 8080,
+    port: config.port,
     // open: 'http://localhost:8080',
     // watchContentBase: true,
-    allowedHosts: [
-      'purejs.skbt.co.kr'
-    ]
+    allowedHosts: []
   },
   plugins: [
     new CleanWebpackPlugin(['dev-server-dist'], { beforeEmit: true }),

@@ -1,8 +1,7 @@
-const path = require('path');
-const merge = require('webpack-merge');
-
 process.env.NODE_ENV = 'production';
 
+const path = require('path');
+const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,8 +9,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsplugn = require('optimize-css-assets-webpack-plugin');
-
-
 
 module.exports = merge(common, {
   mode: 'production',
