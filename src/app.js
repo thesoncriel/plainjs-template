@@ -1,25 +1,17 @@
 import { api } from './services/api';
 
 const main = () => {
-  api.getList().then(list => list.map(item => console.log(item)));
-
   const elem = document.getElementById('app');
+
+  api.getList().then(res =>
+    res.items.map(item =>
+      elem.insertAdjacentHTML('afterend',
+        `<div>${item.name} | ${item.age}</div>`)));
 
   elem.innerHTML = `<div>
     <h1>룰루랄라 -_-)b</h1>
-    <img src="static/pome_melting.jpg" alt="">
+    <img src="static/pome_melting.jpg" alt="포메는 사랑입니다 +_+" width="300">
   </div>`;
-
-  const mData = {
-    name: 'theson',
-    age: 24,
-  };
-
-  const mClone = Object.assign({}, mData);
-
-  console.log(mClone === mData);
-
-  console.log(Object.keys(mData));
-}
+};
 
 main();
